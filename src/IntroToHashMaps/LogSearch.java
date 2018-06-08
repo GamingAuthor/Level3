@@ -1,6 +1,15 @@
 package IntroToHashMaps;
 
-public class LogSearch {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class LogSearch implements ActionListener {
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -28,4 +37,46 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	HashMap<Integer, String> mcdonald = new HashMap<Integer, String>();
+ 	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JButton add = new JButton("Add Entry");
+	JButton search = new JButton("Search by ID");
+	JButton view = new JButton("View List");
+	JButton remove = new JButton("Remove Entry");
+	public static void main(String[] args) {
+		LogSearch lincoln = new LogSearch();
+		lincoln.ui();
+	}
+	void ui() {
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		panel.add(add);
+		panel.add(search);
+		panel.add(view);
+		panel.add(remove);
+		frame.pack();
+		frame.setVisible(true);
+		add.addActionListener(this);
+		search.addActionListener(this);
+		view.addActionListener(this);
+		remove.addActionListener(this);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(add)) {
+		String in = JOptionPane.showInputDialog("Enter in a number.");
+		int key = Integer.parseInt(in);
+		String value = JOptionPane.showInputDialog("Enter in a name.");
+		mcdonald.put(key, value);
+		}
+		if(e.getSource().equals(search)) {
+		String ids = JOptionPane.showInputDialog("Enter an ID number.");
+		int id = Integer.parseInt(ids);
+		if(mcdonald.containsValue(id)) {
+			JOptionPane.showMessageDialog(null, ""+mcdonald.get(id));
+		}
+		}
+	}
 }
