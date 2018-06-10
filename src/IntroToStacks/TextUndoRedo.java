@@ -60,6 +60,8 @@ public class TextUndoRedo implements KeyListener {
 				letter.push(delete.pop());
 			}
 			System.out.println("reee");
+		} else if(e.getKeyCode()==(KeyEvent.VK_SHIFT)){
+			
 		} else {
 			letter.push(e.getKeyChar());
 		}
